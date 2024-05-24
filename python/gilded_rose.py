@@ -1,4 +1,21 @@
 # -*- coding: utf-8 -*-
+class GildedRose(object):
+
+    def __init__(self, items):
+        self.items = items
+
+    def update_quality(self):
+
+        for item in self.items:
+            item.sell_in = item.sell_in - 1
+
+            if item.name not in ['Aged Brie', 'Sulfuras, Hand of Ragnaros',
+                                 'Backstage passes to a TAFKAL80ETC concert']:
+                item.quality = decrease_quality(item)
+
+            if item.name in ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert']:
+                item.quality = increase_quality(item)
+
 
 def decrease_quality(item):
     if not (item.quality <= 0):
@@ -17,29 +34,14 @@ def increase_quality(item):
                 item.quality = item.quality + 2
             elif item.sell_in <= 5:
                 item.quality = item.quality + 3
+            elif item.sell_in < 0:
+                item.quality = 0
+            else:
+                item.quality = item.quality - 1
         else:
-            item.quality = item.quality + 1
-
+            item.quality = item.quality + 1      # Increase quality for aged brie.
     return item.quality
 
-
-class GildedRose(object):
-
-    def __init__(self, items):
-        self.items = items
-
-    def update_quality(self):
-        for item in self.items:
-            item.sell_in = item.sell_in - 1
-
-            if item.name not in ['Aged Brie', 'Sulfuras, Hand of Ragnaros',
-                                 'Backstage passes to a TAFKAL80ETC concert']:
-                item.quality = decrease_quality(item)
-
-            if item.name in ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert']:
-                item.quality = increase_quality(item)
-
-#backstage passed both increase and decrease
 
 class Item:
     def __init__(self, name, sell_in, quality):
@@ -49,3 +51,4 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
