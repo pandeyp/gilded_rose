@@ -9,8 +9,7 @@ class GildedRose(object):
         for item in self.items:
             item.sell_in = item.sell_in - 1
 
-            if item.name not in ['Aged Brie', 'Sulfuras, Hand of Ragnaros',
-                                 'Backstage passes to a TAFKAL80ETC concert']:
+            if item.name not in ['Aged Brie', 'Sulfuras, Hand of Ragnaros']:
                 item.quality = decrease_quality(item)
 
             if item.name in ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert']:
@@ -30,17 +29,20 @@ def decrease_quality(item):
 def increase_quality(item):
     if not (item.quality >= 50):
         if item.name == 'Backstage passes to a TAFKAL80ETC concert':
-            if 5 <= item.sell_in <= 10:
+            if 5 < item.sell_in <= 10:
                 item.quality = item.quality + 2
-            elif item.sell_in <= 5:
+            elif 0 < item.sell_in <= 5:
                 item.quality = item.quality + 3
-            elif item.sell_in < 0:
+            elif item.sell_in <= 0:
                 item.quality = 0
-            else:
-                item.quality = item.quality - 1
         else:
             item.quality = item.quality + 1      # Increase quality for aged brie.
+
+    if item.quality > 50:
+        item.quality = 50
+
     return item.quality
+
 
 
 class Item:
