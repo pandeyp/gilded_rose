@@ -12,7 +12,7 @@ While solving the gilded rose kata, the current code depends upon the type of 'i
 
 ## Decision
 
-The change we are proposing is to implement Structural Pattern as number of items exceeds certain number of items (say 7).
+The change I am proposing is to implement Structural Pattern as number of items exceeds certain number of items (say 7).
 
 ## Consequences
 
