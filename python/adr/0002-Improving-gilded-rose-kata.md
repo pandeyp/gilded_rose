@@ -16,4 +16,4 @@ The change we are proposing is to implement Structural Pattern as number of item
 
 ## Consequences
 
-Implementing structural pattern will enhance the readability of the code with separation of concern for each type of items if the logic for quality/sell_in change is maintained in their own separate classes as well as accomodating flexibiltiy and scalability as items increases. 
+Implementing structural pattern will enhance the readability of the code with separation of concern for each type of items if the logic for quality/sell_in change is maintained in their own separate classes and providing for flexibility and scalability as number of items increase. 
